@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Menu, Moon, Sun, Languages, GraduationCap } from 'lucide-react';
 import { useI18n } from '@/i18n/DictionaryContext';
 import { useTheme } from 'next-themes';
@@ -12,6 +13,7 @@ export function Navbar() {
   const { lang, setLang, t } = useI18n();
   const { theme, setTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
   const toggleLanguage = () => {
     setLang(lang === 'en' ? 'hi' : 'en');
@@ -45,17 +47,24 @@ export function Navbar() {
               </span>
             </Link>
           </div>
-          <div className="hidden md:block">
+          <div className="hidden min-[1300px]:block">
             <div className="ml-10 flex items-baseline space-x-4">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className="hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors"
-                >
-                  {link.name}
-                </Link>
-              ))}
+              {navLinks.map((link) => {
+                const isActive = pathname === link.href || (pathname.startsWith(link.href) && link.href !== '/');
+                return (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                      isActive 
+                        ? 'bg-school-navy text-school-yellow dark:bg-muted dark:text-primary' 
+                        : 'hover:text-primary hover:bg-muted/50'
+                    }`}
+                  >
+                    {link.name}
+                  </Link>
+                );
+              })}
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -71,12 +80,12 @@ export function Navbar() {
               <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
               <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
             </Button>
-            <div className="hidden md:block ml-2">
+            <div className="hidden min-[1300px]:block ml-2">
               <Link href="/admissions" className={buttonVariants({ className: "bg-school-maroon hover:bg-school-maroon/90 text-white" })}>
                 {t.nav.applyNow}
               </Link>
             </div>
-            <div className="-mr-2 flex md:hidden">
+            <div className="-mr-2 flex min-[1300px]:hidden">
               <Sheet open={isOpen} onOpenChange={setIsOpen}>
                 <SheetTrigger className="inline-flex items-center justify-center rounded-md p-2 hover:bg-muted transition-colors" aria-label="Open menu">
                   <Menu className="h-6 w-6" />
@@ -84,16 +93,23 @@ export function Navbar() {
                 <SheetContent side="right" className="w-[300px] sm:w-[400px] pt-12">
                   <SheetTitle className="sr-only">Mobile Menu</SheetTitle>
                   <div className="flex flex-col space-y-4">
-                    {navLinks.map((link) => (
-                      <Link
-                        key={link.name}
-                        href={link.href}
-                        className="px-2 py-3 rounded-md text-lg font-medium hover:bg-muted transition-colors"
-                        onClick={() => setIsOpen(false)}
-                      >
-                        {link.name}
-                      </Link>
-                    ))}
+                    {navLinks.map((link) => {
+                      const isActive = pathname === link.href || (pathname.startsWith(link.href) && link.href !== '/');
+                      return (
+                        <Link
+                          key={link.name}
+                          href={link.href}
+                          className={`px-2 py-3 rounded-md text-lg font-medium transition-colors ${
+                            isActive
+                              ? 'bg-school-navy text-school-yellow dark:bg-muted dark:text-primary'
+                              : 'hover:bg-muted'
+                          }`}
+                          onClick={() => setIsOpen(false)}
+                        >
+                          {link.name}
+                        </Link>
+                      );
+                    })}
                     <div className="pt-4 border-t">
                       <Link href="/admissions" onClick={() => setIsOpen(false)} className={buttonVariants({ size: "lg", className: "w-full bg-school-maroon hover:bg-school-maroon/90 text-white" })}>
                         {t.nav.applyNow}
