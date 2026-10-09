@@ -81,7 +81,7 @@ export default function FacilitiesPage() {
             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="w-full lg:w-1/2">
               <div className="relative aspect-video sm:aspect-[4/3] rounded-2xl overflow-hidden shadow-xl border-4 border-school-yellow">
                 <Image 
-                  src="/images/bus.jpg" 
+                  src="/images/img-4.jpeg" 
                   alt="S.S. Public School Transport Facility" 
                   fill 
                   className="object-cover"

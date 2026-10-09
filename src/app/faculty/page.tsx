@@ -87,7 +87,7 @@ export default function FacultyPage() {
                 <CardContent className="p-8 flex flex-col sm:flex-row items-center sm:items-start gap-6">
                   <div className="flex-shrink-0">
                     <div className="w-24 h-24 rounded-full border-4 border-school-yellow overflow-hidden relative shadow-lg">
-                      <Image src="/images/principal.jpeg" alt={principal.name} fill className="object-cover" />
+                      <Image src="/images/img-1.jpeg" alt={principal.name} fill className="object-cover" />
                     </div>
                   </div>
                   <div className="text-center sm:text-left">

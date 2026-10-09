@@ -22,7 +22,7 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="relative bg-school-navy text-primary-foreground py-20 lg:py-32 overflow-hidden">
-        <div className="absolute inset-0 opacity-10 bg-[url('https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center" />
+        <div className="absolute inset-0 opacity-10 bg-[url('/images/img-9.jpeg')] bg-cover bg-center" />
         <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}

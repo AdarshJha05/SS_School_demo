@@ -102,7 +102,7 @@ export default function AboutPage() {
             <motion.div initial={{ opacity: 0, x: 24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
               <div className="bg-gradient-to-br from-school-navy to-school-maroon rounded-2xl p-6 sm:p-10 text-white text-center h-full flex flex-col justify-center relative overflow-hidden">
                 <div className="absolute inset-0 opacity-20">
-                  <Image src="/images/school-park.jpeg" alt="S.S. Public School Campus" fill className="object-cover" />
+                  <Image src="/images/img-2.jpeg" alt="S.S. Public School Campus" fill className="object-cover" />
                 </div>
                 <div className="relative z-10">
                   <GraduationCap className="h-16 w-16 text-school-yellow mx-auto mb-6" />
@@ -125,7 +125,7 @@ export default function AboutPage() {
                 <div className="flex flex-col sm:flex-row gap-8 items-start">
                   <div className="flex-shrink-0 mx-auto sm:mx-0">
                     <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full overflow-hidden border-4 border-school-yellow shadow-lg relative mx-auto">
-                      <Image src="/images/principal.jpeg" alt="Principal" fill className="object-cover" />
+                      <Image src="/images/img-1.jpeg" alt="Principal" fill className="object-cover" />
                     </div>
                     <div className="text-center mt-3">
                       <div className="font-bold text-sm">[Demo] Principal Name</div>
