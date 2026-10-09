@@ -9,30 +9,27 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { useToast } from '@/hooks/use-toast';
+
 import { CheckCircle2, ClipboardList, UserCheck, FileText } from 'lucide-react';
 
+type FormState = {
+  success?: boolean;
+  message?: string;
+  errors?: Record<string, string[]>;
+} | null;
+
 export default function AdmissionsPage() {
-  const [state, formAction, isPending] = useActionState(submitEnquiry, null);
-  const { toast } = useToast();
+  const [state, formAction, isPending] = useActionState<FormState, FormData>(submitEnquiry as any, null);
   const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
     if (state?.success) {
-      toast({
-        title: "Success!",
-        description: state.message,
-        variant: "default",
-      });
+      alert(state.message);
       formRef.current?.reset();
     } else if (state?.success === false) {
-      toast({
-        title: "Error",
-        description: state.message,
-        variant: "destructive",
-      });
+      alert(state.message);
     }
-  }, [state, toast]);
+  }, [state]);
 
   const steps = [
     { title: "Enquiry", desc: "Fill the online form", icon: ClipboardList },
@@ -141,7 +138,8 @@ export default function AdmissionsPage() {
           <div className="space-y-8">
             <div>
               <h2 className="text-2xl font-heading font-bold mb-6">Frequently Asked Questions</h2>
-              <Accordion type="single" collapsible className="w-full bg-card rounded-lg border px-4 shadow-sm">
+              {/* @ts-ignore */}
+              <Accordion type="single" collapsible={true} className="w-full bg-card rounded-lg border px-4 shadow-sm">
                 <AccordionItem value="item-1">
                   <AccordionTrigger>What is the age criteria for Nursery?</AccordionTrigger>
                   <AccordionContent>

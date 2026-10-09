@@ -4,7 +4,7 @@ import React, { useRef } from 'react';
 import Link from 'next/link';
 import { motion, useInView } from 'framer-motion';
 import { useI18n } from '@/i18n/DictionaryContext';
-import { Button } from '@/components/ui/button';
+import { Button, buttonVariants } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { BookOpen, ShieldCheck, Bus, GraduationCap, Users, Trophy, ChevronRight, Activity, HandHeart, IndianRupee } from 'lucide-react';
 
@@ -40,12 +40,12 @@ export default function Home() {
               {t.hero.subheadline}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-              <Button size="lg" asChild className="bg-school-yellow text-school-navy hover:bg-school-yellow/90">
-                <Link href="/admissions">{t.hero.applyForAdmission}</Link>
-              </Button>
-              <Button size="lg" variant="outline" asChild className="text-white border-white/30 hover:bg-white/10 dark:text-school-navy dark:border-school-navy/30">
-                <Link href="/contact">{t.nav.callNow}</Link>
-              </Button>
+              <Link href="/admissions" className={buttonVariants({ size: "lg", className: "bg-school-yellow text-school-navy hover:bg-school-yellow/90" })}>
+                {t.hero.applyForAdmission}
+              </Link>
+              <Link href="/contact" className={buttonVariants({ size: "lg", variant: "outline", className: "text-white border-white/30 hover:bg-white/10 dark:text-school-navy dark:border-school-navy/30" })}>
+                {t.nav.callNow}
+              </Link>
             </div>
           </motion.div>
           <motion.div 
@@ -107,9 +107,9 @@ export default function Home() {
               <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
                 {t.home.aboutPreviewText}
               </p>
-              <Button asChild variant="outline">
-                <Link href="/about">{t.home.readMore} <ChevronRight className="ml-2 h-4 w-4" /></Link>
-              </Button>
+              <Link href="/about" className={buttonVariants({ variant: "outline" })}>
+                {t.home.readMore} <ChevronRight className="ml-2 h-4 w-4" />
+              </Link>
             </div>
             <div className="lg:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-6">
               {t.home.whyChooseUsItems.map((item, index) => {
@@ -190,9 +190,9 @@ export default function Home() {
           <p className="text-lg md:text-xl mb-10 opacity-90 max-w-2xl mx-auto">
             {t.home.ctaBannerText}
           </p>
-          <Button size="lg" asChild className="bg-school-navy text-white hover:bg-school-navy/90 border-2 border-school-navy hover:border-school-navy/90">
-            <Link href="/admissions">{t.hero.applyForAdmission}</Link>
-          </Button>
+          <Link href="/admissions" className={buttonVariants({ size: "lg", className: "bg-school-navy text-white hover:bg-school-navy/90 border-2 border-school-navy hover:border-school-navy/90" })}>
+            {t.hero.applyForAdmission}
+          </Link>
         </div>
       </section>
     </div>

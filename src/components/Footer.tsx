@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { useI18n } from '@/i18n/DictionaryContext';
-import { GraduationCap, MapPin, Phone, Mail, Facebook, Twitter, Instagram } from 'lucide-react';
+import { GraduationCap, MapPin, Phone, Mail, Globe, Share2 } from 'lucide-react';
 
 export function Footer() {
   const { t } = useI18n();
@@ -26,14 +26,11 @@ export function Footer() {
               {t.hero.tagline}
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-primary-foreground/80 hover:text-school-yellow transition-colors">
-                <Facebook className="h-5 w-5" />
+              <a href="#" className="text-primary-foreground/80 hover:text-school-yellow transition-colors" aria-label="Facebook">
+                <Globe className="h-5 w-5" />
               </a>
-              <a href="#" className="text-primary-foreground/80 hover:text-school-yellow transition-colors">
-                <Twitter className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-primary-foreground/80 hover:text-school-yellow transition-colors">
-                <Instagram className="h-5 w-5" />
+              <a href="#" className="text-primary-foreground/80 hover:text-school-yellow transition-colors" aria-label="Twitter">
+                <Share2 className="h-5 w-5" />
               </a>
             </div>
           </div>
@@ -72,7 +69,7 @@ export function Footer() {
         </div>
 
         <div className="border-t border-primary-foreground/20 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-primary-foreground/60">
-          <p>&copy; {new Date().getFullYear()} S.S. Public School. {t.footer.rightsReserved}</p>
+          <p>&copy; 2024 S.S. Public School. {t.footer.rightsReserved}</p>
           <div className="mt-4 md:mt-0 space-x-4">
             <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
             <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>

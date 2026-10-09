@@ -34,13 +34,11 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
 
   const t = lang === 'en' ? en : hi;
 
-  if (!mounted) {
-    return <div className="invisible">{children}</div>; // Or a skeleton/loader to prevent hydration mismatch
-  }
-
   return (
     <I18nContext.Provider value={{ lang, setLang: handleSetLang, t }}>
-      {children}
+      <div className={!mounted ? "invisible" : ""}>
+        {children}
+      </div>
     </I18nContext.Provider>
   );
 }

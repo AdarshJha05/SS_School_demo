@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { Menu, X, Moon, Sun, Languages, Phone, GraduationCap } from 'lucide-react';
 import { useI18n } from '@/i18n/DictionaryContext';
 import { useTheme } from 'next-themes';
-import { Button } from '@/components/ui/button';
+import { Button, buttonVariants } from '@/components/ui/button';
 
 export function Navbar() {
   const { lang, setLang, t } = useI18n();
@@ -70,9 +70,9 @@ export function Navbar() {
               <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
             </Button>
             <div className="hidden md:block ml-2">
-              <Button asChild className="bg-school-maroon hover:bg-school-maroon/90 text-white">
-                <Link href="/admissions">{t.nav.applyNow}</Link>
-              </Button>
+              <Link href="/admissions" className={buttonVariants({ className: "bg-school-maroon hover:bg-school-maroon/90 text-white" })}>
+                {t.nav.applyNow}
+              </Link>
             </div>
             <div className="-mr-2 flex md:hidden">
               <Button variant="ghost" size="icon" onClick={() => setIsOpen(!isOpen)} aria-label="Open menu">
@@ -98,11 +98,9 @@ export function Navbar() {
               </Link>
             ))}
             <div className="pt-4 pb-2 px-3">
-              <Button asChild className="w-full bg-school-maroon hover:bg-school-maroon/90 text-white">
-                <Link href="/admissions" onClick={() => setIsOpen(false)}>
-                  {t.nav.applyNow}
-                </Link>
-              </Button>
+              <Link href="/admissions" onClick={() => setIsOpen(false)} className={buttonVariants({ className: "w-full bg-school-maroon hover:bg-school-maroon/90 text-white" })}>
+                {t.nav.applyNow}
+              </Link>
             </div>
           </div>
         </div>
