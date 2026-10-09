@@ -92,7 +92,7 @@ export function Navbar() {
                 </SheetTrigger>
                 <SheetContent side="right" className="w-[300px] sm:w-[400px] pt-12 px-6 sm:px-10 flex flex-col h-full border-l-0 sm:border-l shadow-2xl">
                   <SheetTitle className="text-xl font-bold mb-4">Menu</SheetTitle>
-                  <div className="flex-1 overflow-y-auto pb-6">
+                  <div className="flex-1 overflow-y-auto overflow-x-hidden pb-6 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                     <div className="flex flex-col space-y-2 mt-2">
                       {navLinks.map((link) => {
                         const isActive = pathname === link.href || (pathname.startsWith(link.href) && link.href !== '/');
