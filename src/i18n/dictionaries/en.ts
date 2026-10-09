@@ -68,5 +68,5 @@ export const en = {
     contactUs: "Contact Us",
     rightsReserved: "All rights reserved. (Demo Website)"
   },
-  announcement: "Admissions Open for Session 2024-25 | Annual Sports Day on 15th Nov | Periodic Tests beginning 1st Dec"
+  announcement: "Admissions Open for Session 2026-27 | Annual Sports Day on 15th Nov | Periodic Tests beginning 1st Dec"
 };
