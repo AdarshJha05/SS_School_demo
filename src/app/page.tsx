@@ -1,12 +1,12 @@
 "use client"
 
-import React, { useRef } from 'react';
+import React from 'react';
 import Link from 'next/link';
-import { motion, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useI18n } from '@/i18n/DictionaryContext';
-import { Button, buttonVariants } from '@/components/ui/button';
+import { buttonVariants } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { BookOpen, ShieldCheck, Bus, GraduationCap, Users, Trophy, ChevronRight, Activity, HandHeart, IndianRupee } from 'lucide-react';
+import { BookOpen, Bus, GraduationCap, Users, Trophy, ChevronRight, Activity, HandHeart, IndianRupee } from 'lucide-react';
 
 export default function Home() {
   const { t } = useI18n();
@@ -54,19 +54,13 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="md:w-1/2 mt-12 md:mt-0"
           >
-            <div className="relative rounded-2xl overflow-hidden aspect-video shadow-2xl border border-white/10">
-              {/* Placeholder for hero image */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-school-navy to-school-maroon opacity-60"></div>
-              <img 
-                src="https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=2132&auto=format&fit=crop" 
-                alt="Students learning" 
-                className="w-full h-full object-cover mix-blend-overlay"
-              />
+            <div className="relative rounded-2xl overflow-hidden aspect-video shadow-2xl border border-white/10 bg-gradient-to-tr from-school-navy to-school-maroon">
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="bg-school-yellow p-4 rounded-full shadow-lg">
                   <GraduationCap className="h-12 w-12 text-school-navy" />
                 </div>
               </div>
+              <div className="absolute bottom-4 left-4 right-4 text-white/70 text-sm text-center">[Demo] School campus photo placeholder</div>
             </div>
           </motion.div>
         </div>

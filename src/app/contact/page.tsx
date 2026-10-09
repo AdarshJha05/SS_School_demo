@@ -1,92 +1,178 @@
-"use client"
+'use client'
 
-import React from 'react';
-import { useI18n } from '@/i18n/DictionaryContext';
-import { Card, CardContent } from '@/components/ui/card';
-import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import React from 'react'
+import Link from 'next/link'
+import { motion } from 'framer-motion'
+import { MapPin, Phone, Mail, Map, Navigation, Clock, Send, ChevronRight } from 'lucide-react'
+import { Card, CardContent } from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
+import { Label } from '@/components/ui/label'
+import { Button } from '@/components/ui/button'
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  show: (i: number) => ({ opacity: 1, y: 0, transition: { delay: i * 0.12 } }),
+}
 
 export default function ContactPage() {
-  const { t } = useI18n();
-
   return (
-    <div className="py-12 bg-background">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl font-heading font-bold mb-4 text-foreground">{t.nav.contact}</h1>
-          <div className="h-1 w-20 bg-school-yellow mx-auto rounded-full mb-6"></div>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            We'd love to hear from you. Get in touch with us for any queries.
-          </p>
+    <div className="min-h-screen bg-background">
+      {/* Header */}
+      <section className="bg-school-navy text-white py-16 sm:py-20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+            <nav className="flex justify-center text-sm text-white/60 mb-6" aria-label="Breadcrumb">
+              <Link href="/" className="hover:text-white transition-colors">Home</Link>
+              <ChevronRight className="mx-2 h-4 w-4" />
+              <span className="text-white">Contact Us</span>
+            </nav>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold mb-4">Contact Us</h1>
+            <p className="text-white/80 max-w-xl mx-auto text-lg">
+              We&apos;d love to hear from you. Reach out for admissions, queries or just to say hello!
+            </p>
+          </motion.div>
         </div>
+      </section>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-          {/* Contact Details */}
-          <div className="lg:col-span-1 space-y-6">
-            <Card className="border-t-4 border-t-school-navy">
-              <CardContent className="p-6 flex items-start gap-4">
-                <div className="bg-school-navy/10 p-3 rounded-full text-school-navy">
-                  <MapPin className="h-6 w-6" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg mb-1">Visit Us</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    S.S. Public School<br />
-                    Dhobwal, Baniyapur<br />
-                    Saran, Bihar, India<br />
-                    (near S.B.I. Bank)
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="border-t-4 border-t-school-yellow">
-              <CardContent className="p-6 flex items-start gap-4">
-                <div className="bg-school-yellow/20 p-3 rounded-full text-school-yellow">
-                  <Phone className="h-6 w-6" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg mb-1">Call Us</h3>
-                  <p className="text-muted-foreground text-sm">
-                    +91 87892 98788<br />
-                    +91 92411 00290
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="border-t-4 border-t-school-maroon">
-              <CardContent className="p-6 flex items-start gap-4">
-                <div className="bg-school-maroon/10 p-3 rounded-full text-school-maroon">
-                  <Clock className="h-6 w-6" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg mb-1">Working Hours</h3>
-                  <p className="text-muted-foreground text-sm">
-                    Mon - Sat: 8:00 AM - 3:00 PM<br />
-                    Sunday: Closed
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
+      {/* Contact Cards */}
+      <section className="py-12 sm:py-16">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-16">
+            {[
+              {
+                icon: MapPin,
+                title: 'Our Location',
+                content: 'Dhobwal, Baniyapur, Saran, Bihar, India (near S.B.I. Bank)',
+                sub: 'Saran District, Bihar 841101',
+                color: 'text-school-maroon',
+              },
+              {
+                icon: Phone,
+                title: 'Phone',
+                content: '+91 87892 98788',
+                sub: '+91 92411 00290',
+                color: 'text-school-navy dark:text-school-yellow',
+                href1: 'tel:+918789298788',
+                href2: 'tel:+919241100290',
+              },
+              {
+                icon: Mail,
+                title: 'Email',
+                content: 'info@sspublicschool-demo.com',
+                sub: 'Mon–Sat, 8 AM – 4 PM',
+                color: 'text-school-maroon',
+              },
+            ].map((card, i) => (
+              <motion.div key={card.title} custom={i} variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}>
+                <Card className="h-full hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6 flex flex-col items-center text-center gap-4">
+                    <div className="w-14 h-14 rounded-full bg-school-yellow/20 flex items-center justify-center">
+                      <card.icon className={`h-7 w-7 ${card.color}`} />
+                    </div>
+                    <div>
+                      <h2 className="font-heading font-bold text-lg mb-2">{card.title}</h2>
+                      {card.href1 ? (
+                        <>
+                          <a href={card.href1} className="block text-muted-foreground hover:text-school-maroon transition-colors">{card.content}</a>
+                          <a href={card.href2} className="block text-muted-foreground hover:text-school-maroon transition-colors">{card.sub}</a>
+                        </>
+                      ) : (
+                        <>
+                          <p className="text-muted-foreground">{card.content}</p>
+                          <p className="text-sm text-muted-foreground/70 mt-1">{card.sub}</p>
+                        </>
+                      )}
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
           </div>
 
-          {/* Map */}
-          <div className="lg:col-span-2">
-            <Card className="overflow-hidden h-full min-h-[400px]">
-              <iframe
-                title="S.S. Public School Location"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14361.341517457497!2d84.7787498!3d25.8584742!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3992b95b4cbdf79b%3A0x6b4f738a5b2fc136!2sBaniyapur%2C%20Bihar!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
-                width="100%"
-                height="100%"
-                style={{ border: 0, minHeight: '400px' }}
-                allowFullScreen={true}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              ></iframe>
-            </Card>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Map Placeholder */}
+            <motion.div initial={{ opacity: 0, x: -24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
+              <Card className="overflow-hidden h-full">
+                <div className="bg-gradient-to-br from-school-navy to-school-maroon p-10 sm:p-16 flex flex-col items-center justify-center text-white text-center min-h-[300px]">
+                  <Map className="h-16 w-16 text-school-yellow mb-6" />
+                  <h3 className="font-heading font-bold text-xl mb-2">S.S. Public School</h3>
+                  <p className="text-white/80 text-sm mb-6 max-w-xs">
+                    Dhobwal, Baniyapur, Saran, Bihar, India<br />(near S.B.I. Bank)
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <a
+                      href="https://maps.google.com/?q=Baniyapur+Saran+Bihar"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 bg-school-yellow text-school-navy font-bold px-4 py-2 rounded-lg hover:bg-school-yellow/90 transition-colors text-sm"
+                    >
+                      <Map className="h-4 w-4" /> View on Google Maps
+                    </a>
+                    <a
+                      href="https://maps.google.com/maps?daddr=Baniyapur+Saran+Bihar"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 bg-white/10 text-white font-semibold px-4 py-2 rounded-lg hover:bg-white/20 transition-colors text-sm border border-white/20"
+                    >
+                      <Navigation className="h-4 w-4" /> Get Directions
+                    </a>
+                  </div>
+                </div>
+                {/* Office Hours */}
+                <CardContent className="p-6">
+                  <h3 className="font-heading font-bold text-lg mb-4 flex items-center gap-2">
+                    <Clock className="h-5 w-5 text-school-maroon" /> Office Hours
+                  </h3>
+                  <div className="space-y-2 text-sm">
+                    {[
+                      { day: 'Monday – Friday', time: '8:00 AM – 4:00 PM' },
+                      { day: 'Saturday', time: '8:00 AM – 1:00 PM' },
+                      { day: 'Sunday', time: 'Closed' },
+                    ].map((row) => (
+                      <div key={row.day} className="flex justify-between text-muted-foreground">
+                        <span className="font-medium text-foreground">{row.day}</span>
+                        <span>{row.time}</span>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Quick Contact Form */}
+            <motion.div initial={{ opacity: 0, x: 24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
+              <Card className="h-full">
+                <CardContent className="p-6 sm:p-8">
+                  <h2 className="text-2xl font-heading font-bold mb-2">Send Us a Message</h2>
+                  <p className="text-muted-foreground text-sm mb-6">We typically respond within 1 business day.</p>
+                  <form className="space-y-5">
+                    <div className="space-y-2">
+                      <Label htmlFor="contact-name">Your Name *</Label>
+                      <Input id="contact-name" name="name" autoComplete="name" required />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="contact-phone">Phone Number *</Label>
+                      <Input id="contact-phone" name="phone" type="tel" inputMode="numeric" autoComplete="tel" required />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="contact-message">Message *</Label>
+                      <Textarea id="contact-message" name="message" rows={5} required />
+                    </div>
+                    <Button type="submit" className="w-full bg-school-navy text-white hover:bg-school-navy/90 h-11">
+                      <Send className="mr-2 h-4 w-4" /> Send Message
+                    </Button>
+                    <p className="text-xs text-muted-foreground text-center">
+                      For admission enquiries, please use the{' '}
+                      <Link href="/admissions" className="underline hover:text-school-maroon">Admissions page</Link>.
+                    </p>
+                  </form>
+                </CardContent>
+              </Card>
+            </motion.div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
-  );
+  )
 }

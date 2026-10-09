@@ -2,10 +2,11 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Menu, X, Moon, Sun, Languages, Phone, GraduationCap } from 'lucide-react';
+import { Menu, Moon, Sun, Languages, GraduationCap } from 'lucide-react';
 import { useI18n } from '@/i18n/DictionaryContext';
 import { useTheme } from 'next-themes';
 import { Button, buttonVariants } from '@/components/ui/button';
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet';
 
 export function Navbar() {
   const { lang, setLang, t } = useI18n();
@@ -23,6 +24,7 @@ export function Navbar() {
     { name: t.nav.admissions, href: '/admissions' },
     { name: t.nav.facilities, href: '/facilities' },
     { name: t.nav.gallery, href: '/gallery' },
+    { name: t.nav.faculty ?? 'Faculty', href: '/faculty' },
     { name: t.nav.contact, href: '/contact' },
   ];
 
@@ -75,36 +77,35 @@ export function Navbar() {
               </Link>
             </div>
             <div className="-mr-2 flex md:hidden">
-              <Button variant="ghost" size="icon" onClick={() => setIsOpen(!isOpen)} aria-label="Open menu">
-                {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-              </Button>
+              <Sheet open={isOpen} onOpenChange={setIsOpen}>
+                <SheetTrigger className="inline-flex items-center justify-center rounded-md p-2 hover:bg-muted transition-colors" aria-label="Open menu">
+                  <Menu className="h-6 w-6" />
+                </SheetTrigger>
+                <SheetContent side="right" className="w-[300px] sm:w-[400px] pt-12">
+                  <SheetTitle className="sr-only">Mobile Menu</SheetTitle>
+                  <div className="flex flex-col space-y-4">
+                    {navLinks.map((link) => (
+                      <Link
+                        key={link.name}
+                        href={link.href}
+                        className="px-2 py-3 rounded-md text-lg font-medium hover:bg-muted transition-colors"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        {link.name}
+                      </Link>
+                    ))}
+                    <div className="pt-4 border-t">
+                      <Link href="/admissions" onClick={() => setIsOpen(false)} className={buttonVariants({ size: "lg", className: "w-full bg-school-maroon hover:bg-school-maroon/90 text-white" })}>
+                        {t.nav.applyNow}
+                      </Link>
+                    </div>
+                  </div>
+                </SheetContent>
+              </Sheet>
             </div>
           </div>
         </div>
       </div>
-
-      {/* Mobile menu */}
-      {isOpen && (
-        <div className="md:hidden border-t">
-          <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="block px-3 py-2 rounded-md text-base font-medium hover:bg-muted"
-                onClick={() => setIsOpen(false)}
-              >
-                {link.name}
-              </Link>
-            ))}
-            <div className="pt-4 pb-2 px-3">
-              <Link href="/admissions" onClick={() => setIsOpen(false)} className={buttonVariants({ className: "w-full bg-school-maroon hover:bg-school-maroon/90 text-white" })}>
-                {t.nav.applyNow}
-              </Link>
-            </div>
-          </div>
-        </div>
-      )}
     </nav>
   );
 }

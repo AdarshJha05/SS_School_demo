@@ -14,7 +14,13 @@ const enquirySchema = z.object({
   honeypot: z.string().max(0, "Spam detected").optional()
 });
 
-export async function submitEnquiry(prevState: any, formData: FormData) {
+type EnquiryState = {
+  success?: boolean;
+  message?: string;
+  errors?: Record<string, string[]>;
+} | null;
+
+export async function submitEnquiry(prevState: EnquiryState, formData: FormData): Promise<EnquiryState> {
   try {
     const rawData = {
       parentName: formData.get('parentName'),
@@ -34,7 +40,6 @@ export async function submitEnquiry(prevState: any, formData: FormData) {
     }
 
     if (!db) {
-      // Fallback if sqlite failed to load (e.g. some deployment environments)
       console.log('DB not available, saving to memory only:', validatedData);
       return { success: true, message: "Enquiry submitted successfully! (Demo mode)" };
     }
@@ -62,7 +67,7 @@ export async function submitEnquiry(prevState: any, formData: FormData) {
   } catch (error) {
     console.error("Enquiry submission error:", error);
     if (error instanceof z.ZodError) {
-      return { success: false, errors: error.flatten().fieldErrors, message: "Please fix the errors in the form." };
+      return { success: false, errors: error.flatten().fieldErrors as Record<string, string[]>, message: "Please fix the errors in the form." };
     }
     return { success: false, message: "Something went wrong. Please try again later." };
   }

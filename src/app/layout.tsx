@@ -6,6 +6,7 @@ import { I18nProvider } from "@/i18n/DictionaryContext";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { FloatingActions } from "@/components/FloatingActions";
+import { MobileBottomBar } from "@/components/MobileBottomBar";
 
 export const metadata: Metadata = {
   title: "S.S. Public School | Learning with Values, Growing with Confidence",
@@ -30,11 +31,12 @@ export default function RootLayout({
         >
           <I18nProvider>
             <Navbar />
-            <main className="flex-1">
+            <main className="flex-1 pb-14 md:pb-0">
               {children}
             </main>
             <Footer />
             <FloatingActions />
+            <MobileBottomBar />
           </I18nProvider>
         </ThemeProvider>
       </body>

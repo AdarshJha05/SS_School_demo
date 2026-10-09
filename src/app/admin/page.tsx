@@ -3,12 +3,21 @@ import { db } from '@/lib/db';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 
-// Very basic auth check for demo purposes
-// In a real app, use NextAuth or similar
-function getEnquiries() {
+interface Enquiry {
+  id: number;
+  parentName: string;
+  studentName: string;
+  phone: string;
+  email: string | null;
+  grade: string;
+  message: string | null;
+  createdAt: string;
+}
+
+function getEnquiries(): Enquiry[] {
   if (!db) return [];
   try {
-    return db.prepare('SELECT * FROM enquiries ORDER BY createdAt DESC').all();
+    return db.prepare('SELECT * FROM enquiries ORDER BY createdAt DESC').all() as Enquiry[];
   } catch (e) {
     console.error(e);
     return [];
@@ -16,7 +25,7 @@ function getEnquiries() {
 }
 
 export default function AdminPage() {
-  const enquiries = getEnquiries() as any[];
+  const enquiries = getEnquiries();
 
   return (
     <div className="py-12 bg-muted/20 min-h-[80vh]">
