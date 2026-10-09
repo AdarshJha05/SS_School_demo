@@ -19,8 +19,9 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <section className="bg-school-navy text-white py-16 sm:py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="bg-school-navy text-white py-16 sm:py-24 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-5 bg-[radial-gradient(circle_at_70%_30%,#F5B800,transparent_60%)]" />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <nav className="flex justify-center text-sm text-white/60 mb-6" aria-label="Breadcrumb">
               <Link href="/" className="hover:text-white transition-colors">Home</Link>

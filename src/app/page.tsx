@@ -68,7 +68,7 @@ export default function Home() {
       </section>
 
       {/* Quick Facts Strip */}
-      <section className="bg-school-maroon text-white py-8">
+      <section className="bg-school-maroon text-white py-12 sm:py-16">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             <div className="flex flex-col items-center gap-2">
@@ -92,7 +92,7 @@ export default function Home() {
       </section>
 
       {/* About Preview */}
-      <section className="py-20 bg-background">
+      <section className="py-16 sm:py-24 bg-background">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row gap-12 items-center">
             <div className="lg:w-1/2">
@@ -111,7 +111,7 @@ export default function Home() {
                 const icons = [Users, Activity, Bus, Trophy, HandHeart, IndianRupee];
                 const Icon = icons[index % icons.length];
                 return (
-                  <Card key={index} className="border-none shadow-md bg-card/50 backdrop-blur">
+                  <Card key={index} className="border-none shadow-sm bg-card/50 backdrop-blur hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                     <CardContent className="p-6">
                       <div className="bg-school-yellow/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
                         <Icon className="h-6 w-6 text-school-navy dark:text-school-yellow" />
@@ -128,8 +128,8 @@ export default function Home() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-school-navy text-white">
-        <div className="container mx-auto px-4">
+      <section className="py-20 sm:py-24 bg-school-navy text-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
               <div className="text-4xl md:text-5xl font-bold text-school-yellow mb-2">{t.home.stats.students}</div>
@@ -152,8 +152,8 @@ export default function Home() {
       </section>
 
       {/* Academics Overview */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
+      <section className="py-20 sm:py-24 bg-muted/30">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <h2 className="text-3xl font-heading font-bold mb-4">{t.home.academicsHeading}</h2>
             <div className="h-1 w-20 bg-school-yellow mx-auto rounded-full"></div>
@@ -177,8 +177,8 @@ export default function Home() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-20 bg-school-yellow text-school-navy">
-        <div className="container mx-auto px-4 text-center">
+      <section className="py-24 sm:py-32 bg-school-yellow text-school-navy">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">
             {t.home.ctaBannerHeading}
           </h2>

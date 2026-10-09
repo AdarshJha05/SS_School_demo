@@ -9,9 +9,10 @@ export function Footer() {
   const { t } = useI18n();
 
   return (
-    <footer className="bg-school-navy text-primary-foreground">
-      <div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+    <footer className="bg-school-navy text-primary-foreground border-t-[8px] border-school-yellow relative overflow-hidden">
+      <div className="absolute inset-0 opacity-5 bg-[radial-gradient(circle_at_30%_50%,#ffffff,transparent_70%)]" />
+      <div className="container mx-auto px-4 py-16 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           {/* Brand & About */}
           <div className="md:col-span-1">
             <Link href="/" className="flex items-center gap-2 mb-4">
@@ -25,11 +26,11 @@ export function Footer() {
             <p className="text-primary-foreground/80 text-sm mb-6">
               {t.hero.tagline}
             </p>
-            <div className="flex space-x-4">
-              <a href="#" className="text-primary-foreground/80 hover:text-school-yellow transition-colors" aria-label="Facebook">
+            <div className="flex space-x-3">
+              <a href="#" className="bg-white/5 p-2.5 rounded-full text-primary-foreground/80 hover:bg-school-yellow hover:text-school-navy hover:scale-110 hover:-translate-y-1 transition-all duration-300" aria-label="Facebook">
                 <Globe className="h-5 w-5" />
               </a>
-              <a href="#" className="text-primary-foreground/80 hover:text-school-yellow transition-colors" aria-label="Twitter">
+              <a href="#" className="bg-white/5 p-2.5 rounded-full text-primary-foreground/80 hover:bg-school-yellow hover:text-school-navy hover:scale-110 hover:-translate-y-1 transition-all duration-300" aria-label="Twitter">
                 <Share2 className="h-5 w-5" />
               </a>
             </div>
