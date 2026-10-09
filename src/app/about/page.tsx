@@ -2,6 +2,7 @@
 
 import React from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { GraduationCap, Heart, Star, Users, ChevronRight, Quote } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
@@ -99,12 +100,14 @@ export default function AboutPage() {
               </div>
             </motion.div>
             <motion.div initial={{ opacity: 0, x: 24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-              <div className="bg-gradient-to-br from-school-navy to-school-maroon rounded-2xl p-10 text-white text-center">
-                <GraduationCap className="h-20 w-20 text-school-yellow mx-auto mb-6" />
-                <h3 className="font-heading font-bold text-xl mb-2">Learning with Values</h3>
-                <p className="text-white/80">Growing with Confidence</p>
-                <div className="mt-6 pt-6 border-t border-white/20 text-sm text-white/60">
-                  [Demo] School campus illustration placeholder
+              <div className="bg-gradient-to-br from-school-navy to-school-maroon rounded-2xl p-6 sm:p-10 text-white text-center h-full flex flex-col justify-center relative overflow-hidden">
+                <div className="absolute inset-0 opacity-20">
+                  <Image src="/images/school-park.jpeg" alt="S.S. Public School Campus" fill className="object-cover" />
+                </div>
+                <div className="relative z-10">
+                  <GraduationCap className="h-16 w-16 text-school-yellow mx-auto mb-6" />
+                  <h3 className="font-heading font-bold text-xl mb-2">Learning with Values</h3>
+                  <p className="text-white/80">Growing with Confidence</p>
                 </div>
               </div>
             </motion.div>
@@ -121,8 +124,8 @@ export default function AboutPage() {
               <CardContent className="p-8 sm:p-10">
                 <div className="flex flex-col sm:flex-row gap-8 items-start">
                   <div className="flex-shrink-0 mx-auto sm:mx-0">
-                    <div className="w-24 h-24 rounded-full bg-school-navy flex items-center justify-center text-white text-3xl font-bold">
-                      P
+                    <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full overflow-hidden border-4 border-school-yellow shadow-lg relative mx-auto">
+                      <Image src="/images/principal.jpeg" alt="Principal" fill className="object-cover" />
                     </div>
                     <div className="text-center mt-3">
                       <div className="font-bold text-sm">[Demo] Principal Name</div>

@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { ChevronRight } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
@@ -85,8 +86,8 @@ export default function FacultyPage() {
                 <div className="h-2 bg-school-yellow" />
                 <CardContent className="p-8 flex flex-col sm:flex-row items-center sm:items-start gap-6">
                   <div className="flex-shrink-0">
-                    <div className={`w-24 h-24 rounded-full ${principal.color} flex items-center justify-center text-white text-3xl font-bold shadow-lg`}>
-                      {principal.initials}
+                    <div className="w-24 h-24 rounded-full border-4 border-school-yellow overflow-hidden relative shadow-lg">
+                      <Image src="/images/principal.jpeg" alt={principal.name} fill className="object-cover" />
                     </div>
                   </div>
                   <div className="text-center sm:text-left">
