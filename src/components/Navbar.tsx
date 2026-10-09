@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, Moon, Sun, Languages, GraduationCap } from 'lucide-react';
+import { Menu, Moon, Sun, Languages, GraduationCap, Phone, ChevronRight } from 'lucide-react';
 import { useI18n } from '@/i18n/DictionaryContext';
 import { useTheme } from 'next-themes';
 import { Button, buttonVariants } from '@/components/ui/button';
@@ -90,31 +90,45 @@ export function Navbar() {
                 <SheetTrigger className="inline-flex items-center justify-center rounded-md p-2 hover:bg-muted transition-colors" aria-label="Open menu">
                   <Menu className="h-6 w-6" />
                 </SheetTrigger>
-                <SheetContent side="right" className="w-[300px] sm:w-[400px] pt-12">
-                  <SheetTitle className="sr-only">Mobile Menu</SheetTitle>
-                  <div className="flex flex-col space-y-4">
-                    {navLinks.map((link) => {
-                      const isActive = pathname === link.href || (pathname.startsWith(link.href) && link.href !== '/');
-                      return (
-                        <Link
-                          key={link.name}
-                          href={link.href}
-                          className={`px-2 py-3 rounded-md text-lg font-medium transition-colors ${
-                            isActive
-                              ? 'bg-school-navy text-school-yellow dark:bg-muted dark:text-primary'
-                              : 'hover:bg-muted'
-                          }`}
-                          onClick={() => setIsOpen(false)}
-                        >
-                          {link.name}
-                        </Link>
-                      );
-                    })}
-                    <div className="pt-4 border-t">
-                      <Link href="/admissions" onClick={() => setIsOpen(false)} className={buttonVariants({ size: "lg", className: "w-full bg-school-maroon hover:bg-school-maroon/90 text-white" })}>
-                        {t.nav.applyNow}
-                      </Link>
+                <SheetContent side="right" className="w-[300px] sm:w-[400px] pt-12 flex flex-col h-full border-l-0 sm:border-l shadow-2xl">
+                  <SheetTitle className="text-xl font-bold mb-4 px-2">Menu</SheetTitle>
+                  <div className="flex-1 overflow-y-auto pr-2 pb-6 -mr-2">
+                    <div className="flex flex-col space-y-2 mt-2">
+                      {navLinks.map((link) => {
+                        const isActive = pathname === link.href || (pathname.startsWith(link.href) && link.href !== '/');
+                        return (
+                          <Link
+                            key={link.name}
+                            href={link.href}
+                            className={`px-4 py-3.5 rounded-xl text-[1.1rem] font-medium transition-all duration-200 flex items-center justify-between ${
+                              isActive
+                                ? 'bg-school-navy text-school-yellow shadow-md dark:bg-muted dark:text-primary translate-x-1'
+                                : 'hover:bg-muted text-foreground/90 hover:text-foreground hover:translate-x-1'
+                            }`}
+                            onClick={() => setIsOpen(false)}
+                          >
+                            <span>{link.name}</span>
+                            <ChevronRight className={`h-5 w-5 transition-transform ${isActive ? 'text-school-yellow/70 opacity-100' : 'text-muted-foreground opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0'}`} />
+                          </Link>
+                        );
+                      })}
                     </div>
+                  </div>
+                  <div className="pt-6 border-t mt-auto space-y-6">
+                    <div className="space-y-4 px-2">
+                      <div className="flex items-center gap-4">
+                        <div className="bg-school-maroon/10 dark:bg-school-maroon/20 p-3 rounded-full text-school-maroon dark:text-school-maroon-light">
+                          <Phone className="h-5 w-5" />
+                        </div>
+                        <div>
+                          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-0.5">Admissions Helpline</p>
+                          <a href="tel:+919876543210" className="font-bold text-foreground text-lg hover:text-school-maroon transition-colors">+91 98765 43210</a>
+                        </div>
+                      </div>
+                    </div>
+                    <Link href="/admissions" onClick={() => setIsOpen(false)} className={buttonVariants({ size: "lg", className: "w-full h-14 bg-school-maroon hover:bg-school-maroon/90 text-white rounded-xl shadow-lg text-lg" })}>
+                      {t.nav.applyNow}
+                    </Link>
                   </div>
                 </SheetContent>
               </Sheet>
