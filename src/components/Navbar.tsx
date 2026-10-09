@@ -90,9 +90,9 @@ export function Navbar() {
                 <SheetTrigger className="inline-flex items-center justify-center rounded-md p-2 hover:bg-muted transition-colors" aria-label="Open menu">
                   <Menu className="h-6 w-6" />
                 </SheetTrigger>
-                <SheetContent side="right" className="w-[300px] sm:w-[400px] pt-12 flex flex-col h-full border-l-0 sm:border-l shadow-2xl">
-                  <SheetTitle className="text-xl font-bold mb-4 px-2">Menu</SheetTitle>
-                  <div className="flex-1 overflow-y-auto pr-2 pb-6 -mr-2">
+                <SheetContent side="right" className="w-[300px] sm:w-[400px] pt-12 px-6 sm:px-10 flex flex-col h-full border-l-0 sm:border-l shadow-2xl">
+                  <SheetTitle className="text-xl font-bold mb-4">Menu</SheetTitle>
+                  <div className="flex-1 overflow-y-auto pb-6">
                     <div className="flex flex-col space-y-2 mt-2">
                       {navLinks.map((link) => {
                         const isActive = pathname === link.href || (pathname.startsWith(link.href) && link.href !== '/');
@@ -115,7 +115,7 @@ export function Navbar() {
                     </div>
                   </div>
                   <div className="pt-6 border-t mt-auto space-y-6">
-                    <div className="space-y-4 px-2">
+                    <div className="space-y-4">
                       <div className="flex items-center gap-4">
                         <div className="bg-school-maroon/10 dark:bg-school-maroon/20 p-3 rounded-full text-school-maroon dark:text-school-maroon-light">
                           <Phone className="h-5 w-5" />
