@@ -44,7 +44,7 @@ export default function Home() {
               <Link href="/admissions" className={buttonVariants({ size: "lg", className: "bg-school-yellow text-school-navy hover:bg-school-yellow/90" })}>
                 {t.hero.applyForAdmission}
               </Link>
-              <Link href="/contact" className={buttonVariants({ size: "lg", variant: "outline", className: "text-white border-white/30 hover:bg-white/10" })}>
+              <Link href="/contact" className={buttonVariants({ size: "lg", variant: "outline", className: "bg-transparent text-white border-white/30 hover:bg-white/10 hover:text-white" })}>
                 {t.nav.callNow}
               </Link>
             </div>
