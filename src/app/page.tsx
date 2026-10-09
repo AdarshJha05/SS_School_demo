@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useI18n } from '@/i18n/DictionaryContext';
 import { buttonVariants } from '@/components/ui/button';
@@ -43,7 +44,7 @@ export default function Home() {
               <Link href="/admissions" className={buttonVariants({ size: "lg", className: "bg-school-yellow text-school-navy hover:bg-school-yellow/90" })}>
                 {t.hero.applyForAdmission}
               </Link>
-              <Link href="/contact" className={buttonVariants({ size: "lg", variant: "outline", className: "text-white border-white/30 hover:bg-white/10 dark:text-school-navy dark:border-school-navy/30" })}>
+              <Link href="/contact" className={buttonVariants({ size: "lg", variant: "outline", className: "text-white border-white/30 hover:bg-white/10" })}>
                 {t.nav.callNow}
               </Link>
             </div>
@@ -54,13 +55,13 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="md:w-1/2 mt-12 md:mt-0"
           >
-            <div className="relative rounded-2xl overflow-hidden aspect-video shadow-2xl border border-white/10 bg-gradient-to-tr from-school-navy to-school-maroon">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="bg-school-yellow p-4 rounded-full shadow-lg">
-                  <GraduationCap className="h-12 w-12 text-school-navy" />
-                </div>
-              </div>
-              <div className="absolute bottom-4 left-4 right-4 text-white/70 text-sm text-center">[Demo] School campus photo placeholder</div>
+            <div className="relative rounded-2xl overflow-hidden aspect-video shadow-2xl border-4 border-white/20 bg-muted">
+              <Image 
+                src="/images/img-3.jpeg" 
+                alt="S.S. Public School Campus" 
+                fill 
+                className="object-cover" 
+              />
             </div>
           </motion.div>
         </div>
