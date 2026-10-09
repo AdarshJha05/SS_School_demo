@@ -27,7 +27,7 @@ interface FacultyMember {
 }
 
 const faculty: FacultyMember[] = [
-  { name: '[Demo] Rajesh Kumar', role: 'Principal', subject: 'Administration', qual: 'M.Ed, M.A. English', exp: 20, dept: 'admin', initials: 'RK', color: 'bg-school-navy', featured: true },
+  { name: 'Abhimanyu Kumar Singh', role: 'Principal', subject: 'Administration', qual: 'M.Ed, M.A. English', exp: 20, dept: 'admin', initials: 'AS', color: 'bg-school-navy', featured: true },
   { name: '[Demo] Priya Sharma', role: 'Senior Teacher', subject: 'Mathematics', qual: 'M.Sc Mathematics, B.Ed', exp: 12, dept: 'secondary', initials: 'PS', color: 'bg-school-maroon' },
   { name: '[Demo] Anjali Singh', role: 'Teacher', subject: 'Science', qual: 'M.Sc Physics, B.Ed', exp: 8, dept: 'middle', initials: 'AS', color: 'bg-purple-700' },
   { name: '[Demo] Suresh Yadav', role: 'Teacher', subject: 'Hindi', qual: 'M.A. Hindi, B.Ed', exp: 10, dept: 'primary', initials: 'SY', color: 'bg-green-700' },
@@ -87,7 +87,7 @@ export default function FacultyPage() {
                 <CardContent className="p-8 flex flex-col sm:flex-row items-center sm:items-start gap-6">
                   <div className="flex-shrink-0">
                     <div className="w-24 h-24 rounded-full border-4 border-school-yellow overflow-hidden relative shadow-lg">
-                      <Image src="/images/img-1.jpeg" alt={principal.name} fill className="object-cover" />
+                      <Image src="/images/principal.jpeg" alt={principal.name} fill className="object-cover" />
                     </div>
                   </div>
                   <div className="text-center sm:text-left">

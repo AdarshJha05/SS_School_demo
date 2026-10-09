@@ -125,10 +125,10 @@ export default function AboutPage() {
                 <div className="flex flex-col sm:flex-row gap-8 items-start">
                   <div className="flex-shrink-0 mx-auto sm:mx-0">
                     <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full overflow-hidden border-4 border-school-yellow shadow-lg relative mx-auto">
-                      <Image src="/images/img-1.jpeg" alt="Principal" fill className="object-cover" />
+                      <Image src="/images/principal.jpeg" alt="Principal" fill className="object-cover" />
                     </div>
                     <div className="text-center mt-3">
-                      <div className="font-bold text-sm">[Demo] Principal Name</div>
+                      <div className="font-bold text-sm">Abhimanyu Kumar Singh</div>
                       <div className="text-xs text-muted-foreground">M.Ed, M.A.</div>
                     </div>
                   </div>
