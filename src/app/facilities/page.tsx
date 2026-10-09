@@ -2,6 +2,7 @@
 
 import React from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { BookOpen, Monitor, Trophy, Bus, Heart, Utensils, Shield, ChevronRight } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
@@ -75,59 +76,76 @@ export default function FacilitiesPage() {
       {/* Transport Section */}
       <section className="py-16 bg-muted/30">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <Bus className="h-8 w-8 text-school-maroon" />
-            <h2 className="text-2xl sm:text-3xl font-heading font-bold">Transport Routes</h2>
-          </div>
-          <p className="text-muted-foreground text-center mb-2">GPS-tracked buses for safe and reliable commuting.</p>
-          <p className="text-center text-xs text-muted-foreground mb-10">
-            ⚠ Demo data — actual routes and timings will be confirmed at time of admission.
-          </p>
+          <div className="flex flex-col lg:flex-row gap-12 items-center justify-center max-w-6xl mx-auto">
+            {/* Image side */}
+            <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="w-full lg:w-1/2">
+              <div className="relative aspect-video sm:aspect-[4/3] rounded-2xl overflow-hidden shadow-xl border-4 border-school-yellow">
+                <Image 
+                  src="/images/bus.jpg" 
+                  alt="S.S. Public School Transport Facility" 
+                  fill 
+                  className="object-cover"
+                />
+              </div>
+            </motion.div>
 
-          {/* Mobile: stacked cards */}
-          <div className="md:hidden space-y-4 max-w-md mx-auto">
-            {routes.map((r) => (
-              <Card key={r.id} className="border-l-4 border-l-school-navy">
-                <CardContent className="p-4">
-                  <div className="flex justify-between items-start mb-2">
-                    <span className="font-bold text-school-navy dark:text-school-yellow">{r.id}</span>
-                    <span className="text-xs bg-school-yellow/20 text-school-navy dark:text-foreground px-2 py-0.5 rounded-full border border-school-yellow/30">
-                      Pickup: {r.time}
-                    </span>
-                  </div>
-                  <p className="text-sm font-medium">{r.pickup}</p>
-                  <p className="text-xs text-muted-foreground mt-1">Return: {r.return}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+            {/* Content side */}
+            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="w-full lg:w-1/2">
+              <div className="flex items-center gap-3 mb-4">
+                <Bus className="h-8 w-8 text-school-maroon" />
+                <h2 className="text-2xl sm:text-3xl font-heading font-bold">Transport Routes</h2>
+              </div>
+              <p className="text-muted-foreground mb-2">Safe, reliable, and comfortable commuting for our students.</p>
+              <p className="text-xs text-muted-foreground mb-8">
+                ⚠ Demo data — actual routes and timings will be confirmed at time of admission.
+              </p>
 
-          {/* Desktop: table */}
-          <div className="hidden md:block max-w-3xl mx-auto">
-            <Card>
-              <CardContent className="p-0 overflow-hidden">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="bg-school-navy text-white">
-                      <th className="text-left py-3 px-6 font-semibold">Route</th>
-                      <th className="text-left py-3 px-6 font-semibold">Main Pickup Point</th>
-                      <th className="text-left py-3 px-6 font-semibold">Morning Pickup</th>
-                      <th className="text-left py-3 px-6 font-semibold">Afternoon Return</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {routes.map((r, i) => (
-                      <tr key={r.id} className={i % 2 === 0 ? 'bg-background' : 'bg-muted/40'}>
-                        <td className="py-3 px-6 font-bold text-school-navy dark:text-school-yellow">{r.id}</td>
-                        <td className="py-3 px-6">{r.pickup}</td>
-                        <td className="py-3 px-6">{r.time}</td>
-                        <td className="py-3 px-6">{r.return}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </CardContent>
-            </Card>
+              {/* Mobile: stacked cards */}
+              <div className="md:hidden space-y-4">
+                {routes.map((r) => (
+                  <Card key={r.id} className="border-l-4 border-l-school-navy">
+                    <CardContent className="p-4">
+                      <div className="flex justify-between items-start mb-2">
+                        <span className="font-bold text-school-navy dark:text-school-yellow">{r.id}</span>
+                        <span className="text-xs bg-school-yellow/20 text-school-navy dark:text-foreground px-2 py-0.5 rounded-full border border-school-yellow/30">
+                          Pickup: {r.time}
+                        </span>
+                      </div>
+                      <p className="text-sm font-medium">{r.pickup}</p>
+                      <p className="text-xs text-muted-foreground mt-1">Return: {r.return}</p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+
+              {/* Desktop: table */}
+              <div className="hidden md:block">
+                <Card>
+                  <CardContent className="p-0 overflow-hidden">
+                    <table className="w-full text-sm">
+                      <thead>
+                        <tr className="bg-school-navy text-white">
+                          <th className="text-left py-3 px-6 font-semibold">Route</th>
+                          <th className="text-left py-3 px-6 font-semibold">Main Pickup Point</th>
+                          <th className="text-left py-3 px-6 font-semibold">Morning Pickup</th>
+                          <th className="text-left py-3 px-6 font-semibold">Afternoon Return</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {routes.map((r, i) => (
+                          <tr key={r.id} className={i % 2 === 0 ? 'bg-background' : 'bg-muted/40'}>
+                            <td className="py-3 px-6 font-bold text-school-navy dark:text-school-yellow">{r.id}</td>
+                            <td className="py-3 px-6">{r.pickup}</td>
+                            <td className="py-3 px-6">{r.time}</td>
+                            <td className="py-3 px-6">{r.return}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </CardContent>
+                </Card>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>

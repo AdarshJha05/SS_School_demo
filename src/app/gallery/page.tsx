@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronRight, X } from 'lucide-react'
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog'
@@ -11,22 +12,19 @@ type GalleryItem = {
   category: string
   title: string
   desc: string
-  gradient: string
+  image: string
 }
 
 const galleryItems: GalleryItem[] = [
-  { id: 1, category: 'annual-day', title: 'Annual Day 2025', desc: 'Students performing a wonderful cultural program on stage.', gradient: 'from-purple-500 to-pink-500' },
-  { id: 2, category: 'sports', title: 'Sports Day 2025', desc: 'Our athletes competing in the athletics competition.', gradient: 'from-green-500 to-teal-500' },
-  { id: 3, category: 'classroom', title: 'Smart Classroom', desc: 'Interactive learning session with our digital smart boards.', gradient: 'from-blue-500 to-cyan-500' },
-  { id: 4, category: 'annual-day', title: 'Cultural Program', desc: 'A mesmerizing dance performance by Class 6 students.', gradient: 'from-orange-500 to-red-500' },
-  { id: 5, category: 'sports', title: 'Cricket Tournament', desc: 'Inter-school cricket match at our sports ground.', gradient: 'from-yellow-500 to-orange-500' },
-  { id: 6, category: 'events', title: 'Republic Day', desc: 'Flag hoisting ceremony with full school participation.', gradient: 'from-blue-600 to-indigo-600' },
-  { id: 7, category: 'classroom', title: 'Science Lab', desc: 'Students conducting experiments in our new science lab.', gradient: 'from-teal-500 to-green-600' },
-  { id: 8, category: 'events', title: 'Independence Day', desc: 'Patriotic celebration with students in traditional attire.', gradient: 'from-orange-400 to-green-500' },
-  { id: 9, category: 'annual-day', title: 'Prize Distribution', desc: 'Academic achievers receiving their awards from the Principal.', gradient: 'from-violet-500 to-purple-600' },
-  { id: 10, category: 'sports', title: 'Football Match', desc: 'Exciting inter-house football tournament finals.', gradient: 'from-emerald-500 to-teal-600' },
-  { id: 11, category: 'classroom', title: 'Computer Lab', desc: 'Students learning coding and digital skills.', gradient: 'from-sky-500 to-blue-600' },
-  { id: 12, category: 'events', title: 'Teachers Day', desc: 'Students felicitating their beloved teachers.', gradient: 'from-pink-500 to-rose-600' },
+  { id: 1, category: 'annual-day', title: 'Annual Day 2025', desc: 'Students performing a wonderful cultural program on stage.', image: '/images/img-1.jpeg' },
+  { id: 2, category: 'sports', title: 'Sports Day 2025', desc: 'Our athletes competing in the athletics competition.', image: '/images/img-2.jpeg' },
+  { id: 3, category: 'classroom', title: 'Smart Classroom', desc: 'Interactive learning session with our digital smart boards.', image: '/images/img-3.jpeg' },
+  { id: 4, category: 'annual-day', title: 'Cultural Program', desc: 'A mesmerizing dance performance by Class 6 students.', image: '/images/img-4.jpeg' },
+  { id: 5, category: 'sports', title: 'Cricket Tournament', desc: 'Inter-school cricket match at our sports ground.', image: '/images/img-5.jpeg' },
+  { id: 6, category: 'events', title: 'Republic Day', desc: 'Flag hoisting ceremony with full school participation.', image: '/images/img-6.jpeg' },
+  { id: 7, category: 'classroom', title: 'Science Lab', desc: 'Students conducting experiments in our new science lab.', image: '/images/img-7.jpeg' },
+  { id: 8, category: 'events', title: 'Independence Day', desc: 'Patriotic celebration with students in traditional attire.', image: '/images/img-8.jpeg' },
+  { id: 9, category: 'annual-day', title: 'Prize Distribution', desc: 'Academic achievers receiving their awards from the Principal.', image: '/images/img-9.jpeg' },
 ]
 
 const filters = [
@@ -97,12 +95,17 @@ export default function GalleryPage() {
                   onClick={() => setSelectedItem(item)}
                   className="cursor-pointer group"
                 >
-                  <div className={`relative bg-gradient-to-br ${item.gradient} rounded-xl overflow-hidden aspect-square sm:aspect-[4/3] shadow-md hover:shadow-xl transition-all duration-300 hover:scale-[1.02]`}>
-                    <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center p-4">
-                      <div className="text-3xl sm:text-4xl mb-2">📸</div>
+                  <div className={`relative bg-muted rounded-xl overflow-hidden aspect-square sm:aspect-[4/3] shadow-md hover:shadow-xl transition-all duration-300 hover:scale-[1.02]`}>
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-black/20 flex flex-col items-center justify-center text-white text-center p-4 opacity-0 group-hover:opacity-100 transition-opacity">
                       <div className="font-heading font-bold text-sm sm:text-base drop-shadow">{item.title}</div>
                     </div>
-                    <div className="absolute bottom-0 left-0 right-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity p-3">
+                    <div className="absolute bottom-0 left-0 right-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity p-3">
                       <p className="text-white text-xs line-clamp-2">{item.desc}</p>
                     </div>
                   </div>
@@ -125,16 +128,17 @@ export default function GalleryPage() {
           {selectedItem && (
             <>
               <DialogTitle className="sr-only">{selectedItem.title}</DialogTitle>
-              <div className={`bg-gradient-to-br ${selectedItem.gradient} aspect-video flex items-center justify-center`}>
-                <div className="text-center text-white p-8">
-                  <div className="text-6xl mb-4">📸</div>
-                  <div className="font-heading font-bold text-2xl drop-shadow">{selectedItem.title}</div>
-                </div>
+              <div className="relative aspect-video bg-muted overflow-hidden">
+                <Image
+                  src={selectedItem.image}
+                  alt={selectedItem.title}
+                  fill
+                  className="object-contain bg-black"
+                />
               </div>
               <div className="p-6">
                 <h2 className="font-heading font-bold text-xl mb-2">{selectedItem.title}</h2>
                 <p className="text-muted-foreground">{selectedItem.desc}</p>
-                <p className="text-xs text-muted-foreground mt-3 italic">Demo placeholder — actual photo will be added.</p>
               </div>
             </>
           )}
